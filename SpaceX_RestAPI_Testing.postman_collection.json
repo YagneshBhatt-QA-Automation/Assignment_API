@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "b258a854-c741-4be5-8360-fc0ea633887e",
+		"name": "SpaceX_RestAPI_Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SpaceX_GET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code 200 ok\",function(){\r",
+							"    var jsondata = pm.response.json();\r",
+							"    console.log()\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type header is application/json\", function()  {  \r",
+							"   pm.response.to.have.header(\"Content-Type\");       \r",
+							"});\r",
+							"\r",
+							"pm.test(\"fairings is null\", function()  { \r",
+							"   var jsondata = pm.response.json();  \r",
+							"   pm.expect(jsondata.fairings).to.be.null;       \r",
+							"});\r",
+							"\r",
+							"pm.test(\"reddit is not null\", function()  { \r",
+							"   var jsondata = pm.response.json();  \r",
+							"   pm.expect(jsondata.reddit).to.be.not.null;       \r",
+							"});\r",
+							"\r",
+							"pm.test(\"flickr is not null\", function()  { \r",
+							"   var jsondata = pm.response.json();  \r",
+							"   pm.expect(jsondata.flickr).to.be.not.null;       \r",
+							"});\r",
+							"\r",
+							"pm.test(\"ships, capsules, cores,id & payloads is not null\", function()  { \r",
+							"   var jsondata = pm.response.json();  \r",
+							"   pm.expect(jsondata.ships).to.be.not.null;\r",
+							"   pm.expect(jsondata.capsules).to.be.not.null;\r",
+							"   pm.expect(jsondata.cores).to.be.not.null;\r",
+							"   pm.expect(jsondata.id).to.be.not.null;\r",
+							"   pm.expect(jsondata.payloads).to.be.not.null;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.spacexdata.com/v4/launches/latest?payloads",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spacexdata",
+						"com"
+					],
+					"path": [
+						"v4",
+						"launches",
+						"latest"
+					],
+					"query": [
+						{
+							"key": "payloads",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
